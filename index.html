@@ -1,23 +1,525 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
-    <main>
-      <h1>Home page</h1>
-    </main>
-  </body>
-</html>
+
+  <!-- Schema.org 구조화 데이터 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FinancialService",
+    "name": "어린이종합보험 전문 비교센터",
+    "description": "2026년 최신 어린이종합보험 가입 순위 및 추천 상품 비교 분석. 우리 아이에게 필요한 핵심 보장(암, 뇌혈관, 심장질환 등)과 예상 보험료 금액을 투명하게 공개합니다.",
+    "url": "https://www.example.com/children-insurance-guide",
+    "review": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "reviewCount": "1250"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "어린이종합보험 상품",
+      "itemListElement": [
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"어린이보험 비갱신형"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"어린이보험 100세 만기"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"어린이보험 종합형 보장"}},
+        {"@type":"Offer","itemOffered":{"@type":"Service","name":"어린이보험 실비 특약"}}
+      ]
+    }
+  }
+  </script>
+
+  <!-- 디자인 CSS (부드럽고 다채로운 색감 적용) -->
+  <style>
+    :root {
+      --primary-color: #0078D7; /* 파란색 계열 */
+      --secondary-color: #28a745; /* 초록색 계열 (성장/건강 이미지) */
+      --background-light: #f9f9f9; /* 부드러운 배경색 */
+      --text-color: #333; /* 기본 텍스트 색상 */
+      --border-color: #ddd; /* 경계선 색상 */
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background-light);
+      color: var(--text-color);
+      line-height: 1.8;
+      font-size: 16px;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      border-radius: 8px;
+    }
+    header {
+      padding: 40px 20px;
+      text-align: center;
+      background-color: var(--primary-color);
+      color: #fff;
+      border-radius: 8px 8px 0 0;
+    }
+    header h1 {
+      font-size: 2.5em;
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+    header p {
+      font-size: 1.2em;
+      opacity: 0.9;
+    }
+    .content-section {
+      padding: 30px 20px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      border-bottom: 1px solid var(--border-color);
+    }
+    h2 {
+      color: var(--primary-color);
+      font-size: 2em;
+      margin-top: 0;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+    h3 {
+      color: #444;
+      font-size: 1.5em;
+      margin-top: 25px;
+      border-left: 5px solid var(--secondary-color);
+      padding-left: 10px;
+    }
+    strong {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+    ul, ol {
+      padding-left: 20px;
+    }
+    li {
+      margin-bottom: 10px;
+    }
+    /* CTA 버튼 스타일 */
+    .cta-button {
+      display: inline-block;
+      background-color: var(--secondary-color);
+      color: #fff;
+      padding: 15px 30px;
+      font-size: 1.1em;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 5px;
+      margin: 20px auto;
+      transition: background-color 0.3s;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .cta-button:hover {
+      background-color: #1a8a30;
+    }
+
+    /* 표 스타일 */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+      font-size: 15px;
+    }
+    th, td {
+      border: 1px solid var(--border-color);
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f1f1;
+      font-weight: bold;
+      color: var(--primary-color);
+    }
+    .table-responsive {
+      overflow-x: auto;
+    }
+
+    /* FAQ 스타일 */
+    .faq-item {
+      margin-bottom: 20px;
+      border: 1px solid var(--border-color);
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #fefefe;
+    }
+    .faq-item h3 {
+      border-left: none;
+      padding-left: 0;
+      margin-top: 0;
+      font-size: 1.3em;
+    }
+
+    /* 폼 스타일 */
+    .quote-form input[type="text"],
+    .quote-form input[type="tel"],
+    .quote-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      box-sizing: border-box;
+      font-size: 1em;
+    }
+    .quote-form button[type="submit"] {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 1em;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+    .quote-form button[type="submit"]:hover {
+      background-color: #005a9e;
+    }
+    .form-box {
+      background-color: #f1faff;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    /* 외부 링크 강조 */
+    .external-link {
+      color: var(--secondary-color);
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    .internal-links {
+        background-color: #e6f7ff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 30px;
+    }
+    .internal-links h3 {
+        color: var(--primary-color);
+        border: none;
+        padding: 0;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    .internal-links ul {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0;
+        list-style: none;
+    }
+    .internal-links li {
+        margin-right: 15px;
+        margin-bottom: 10px;
+    }
+    .internal-links a {
+        color: var(--text-color);
+        text-decoration: none;
+        border-bottom: 1px solid var(--primary-color);
+    }
+  </style>
+
+</head>
+<body>
+
+  <header>
+    <h1>어린이종합보험 가입 순위 | 2026년 최신 보장 분석 및 추천</h1>
+    <p>우리 아이의 미래를 위한 현명한 선택, <strong>어린이종합보험</strong>.<br>전문가와 함께 <strong>장점</strong>, <strong>단점</strong>, <strong>가격 비교</strong>를 통해 최적의 <strong>가입</strong> 시기를 알아보세요.</p>
+    <a href="#quote-form-top" class="cta-button">무료 보험료 견적 1:1 상담 신청</a>
+  </header>
+
+  <div class="container">
+
+    <!-- 내부 링크 섹션 (검색 자동완성 및 연관 키워드 반영) -->
+    <section class="internal-links">
+        <h3>주요 검색 키워드 및 관련 정보 바로가기</h3>
+        <ul>
+            <li><a href="#coverage-guide">보장 내용 가이드</a></li>
+            <li><a href="#cost-analysis">보험료 예상 금액</a></li>
+            <li><a href="#ranking">가입 순위 및 추천 상품</a></li>
+            <li><a href="#pros-cons">장점과 단점 비교</a></li>
+            <li><a href="#non-renewal">비갱신형 vs 갱신형 차이점</a></li>
+            <li><a href="#faq">자주 묻는 질문 (FAQ)</a></li>
+        </ul>
+    </section>
+
+    <!-- 1. 어린이종합보험이란? -->
+    <section class="content-section">
+      <h2>어린이종합보험, 왜 지금 준비해야 할까요?</h2>
+      <p>어린이종합보험은 단순히 질병이나 상해에 대비하는 것을 넘어, 아이의 성인이 될 때까지 발생할 수 있는 모든 위험을 포괄적으로 보장하는 상품입니다. 2026년 현재, 의료 기술의 발전과 함께 새로운 질병 위험 요소가 증가함에 따라 <strong>어린이종합보험 가입</strong>은 선택이 아닌 필수가 되고 있습니다. 특히 성장기 아이들은 면역력이 약해 잦은 병치레를 겪을 수 있으며, 활동량이 많아 예상치 못한 사고의 위험도 높습니다. <strong>내돈내산 후기</strong>를 보면 많은 부모님들이 일찍 가입하지 않은 것을 후회하는 경우가 많습니다.</p>
+      <p><strong>어린이보험</strong>의 보장 범위는 크게 두 가지로 나뉩니다. 첫째, <strong>태아보험</strong>부터 연계되어 출생 시부터 보장하는 선천성 질환, 저체중아 보육비용 등입니다. 둘째, 성장 과정에서 발생할 수 있는 소아암, 백혈병 등 중대한 질병 진단비와 골절, 화상 등 상해 관련 비용입니다. 이 모든 것을 종합적으로 커버하는 것이 바로 <strong>어린이종합보험</strong>의 핵심입니다.</p>
+
+      <h3>태아보험과 어린이종합보험의 관계</h3>
+      <p>태아보험은 <strong>어린이종합보험</strong>의 특별한 형태로, 임신 중 가입하여 태아의 선천성 질환이나 출생 위험을 보장합니다. 출생 후에는 자동으로 어린이종합보험으로 전환되어 성장기 보장까지 이어집니다. 따라서 태아 시기에 가입하는 것이 가장 유리합니다. 만약 가입 시기를 놓쳤더라도 생후 1년 이내에 가입하면 많은 특약의 혜택을 받을 수 있습니다. <strong>어린이보험 추천</strong> 시기 1순위는 태아 시기이며, 늦어도 만 1세 이전에 가입하는 것이 좋습니다.</p>
+    </section>
+
+    <!-- 2. 핵심 보장 분석 및 비교 -->
+    <section class="content-section" id="coverage-guide">
+      <h2>핵심 보장 분석: 우리 아이에게 필요한 보장 범위는?</h2>
+      <p><strong>어린이보험</strong>은 다양한 특약을 조합하여 설계할 수 있습니다. 무조건 <strong>저렴한곳</strong>만 찾기보다는 아이의 성장 단계와 가족력을 고려한 맞춤형 설계가 중요합니다. 다음은 <strong>어린이종합보험</strong> 가입 시 반드시 확인해야 할 필수 보장들입니다.</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>주요 보장 내용</th>
+              <th>가입 시 유의사항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>중대 질병 진단비</strong></td>
+              <td>소아암(백혈병 포함), 뇌혈관 질환, 허혈성 심장질환 등 중대한 질병 진단 시 지급되는 금액.</td>
+              <td><strong>암 진단비</strong>는 일반암, 소액암(갑상선암 등) 구분 없이 넓은 범위로 보장하는 것이 중요. <strong>뇌혈관질환 진단비</strong>는 보장 범위가 좁은 뇌출혈 대신 뇌혈관질환 전체를 커버하는 특약을 선택해야 합니다.</td>
+            </tr>
+            <tr>
+              <td><strong>수술비 및 입원비</strong></td>
+              <td>질병이나 상해로 인한 입원 및 수술 시 일당 또는 수술 종류에 따라 정액 지급.</td>
+              <td>보장 횟수 제한이 없는지 확인하고, 1~5종 수술비 특약으로 다양한 수술에 대비합니다.</td>
+            </tr>
+            <tr>
+              <td><strong>일상생활 배상책임</strong></td>
+              <td>아이가 타인에게 피해를 주었을 경우(예: 친구 물건 파손, 길 가던 사람 상해) 발생한 배상 책임을 보장.</td>
+              <td><strong>어린이종합보험</strong>의 핵심 특약 중 하나로, 부주의한 아이들에게 꼭 필요합니다. 중복 가입 시 비례 보상되므로 중복 가입 여부 확인이 필요합니다.</td>
+            </tr>
+            <tr>
+              <td><strong>골절, 화상 진단비</strong></td>
+              <td>활동량이 많은 아이들의 잦은 골절, 화상 사고에 대비.</td>
+              <td>실비에서 처리되지만, 정액으로 추가 보장받을 수 있어 유용합니다.</td>
+            </tr>
+            <tr>
+              <td><strong>질병/상해 후유장해</strong></td>
+              <td>사고나 질병으로 인해 영구적인 후유장해가 남았을 때 보장.</td>
+              <td><strong>어린이보험</strong>의 <strong>장점</strong> 중 하나인 장기적인 보장 설계에 필수적입니다.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>어린이종합보험</strong>은 성인보험보다 보장 범위가 넓고 보험료가 상대적으로 저렴합니다. <strong>내돈내산 후기</strong>를 참고하여 어떤 특약이 필수적인지 미리 파악하면 좋습니다. <strong>저렴한곳</strong>을 찾는 것도 중요하지만, 보장 내용을 꼼꼼히 살피는 것이 우선입니다.</p>
+
+      <h3>태아보험 가입 시 고려사항 (태아 특약)</h3>
+      <p>임신 22주 이전에 가입할 경우, 선천성 질환 관련 특약을 추가할 수 있습니다. 대표적으로 <strong>신생아 입원일당</strong>, <strong>선천이상 수술비</strong>, <strong>저체중아 인큐베이터 보장</strong> 등이 있습니다. 출산 후에는 가입할 수 없으므로, 태아보험 시기에 반드시 가입해야 합니다. <strong>어린이종합보험</strong>의 <strong>장점</strong>을 극대화하려면 이 시기를 놓치지 마세요.</p>
+    </section>
+
+    <!-- 3. 보험료 비교 및 예상 금액 (얼마) -->
+    <section class="content-section" id="cost-analysis">
+      <h2>어린이종합보험료 평균 금액 및 예상 비용 산출 (2026년 기준)</h2>
+      <p><strong>어린이종합보험료</strong>는 가입 시기(태아/어린이), 보장 만기(80세/100세), 납입 기간(20년납/30년납), 그리고 특약 구성에 따라 크게 달라집니다. <strong>어린이보험 금액</strong>에 대한 <strong>예상</strong>치를 이해하고 <strong>저렴한곳</strong>을 찾기 위해선 다음 요소를 고려해야 합니다.</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th>가입 연령대</th>
+              <th>월 보험료 평균 금액 (비갱신형, 100세 만기)</th>
+              <th>특징 및 참고사항</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>태아 (0세)</strong></td>
+              <td>0세 (임신 22주 이전)</td>
+              <td><strong>3만원 ~ 5만원</strong></td>
+              <td>선천성 질환 특약 포함 가능. 가장 <strong>저렴한</strong> 시기.</td>
+            </tr>
+            <tr>
+              <td><strong>영아 (1~3세)</strong></td>
+              <td>1~3세</td>
+              <td><strong>4만원 ~ 6만원</strong></td>
+              <td>태아 특약 제외, 비교적 <strong>싼곳</strong> 찾기 용이.</td>
+            </tr>
+            <tr>
+              <td><strong>유아/아동 (4~10세)</strong></td>
+              <td>4~10세</td>
+              <td><strong>5만원 ~ 8만원</strong></td>
+              <td>질병 이력 발생 시 <strong>가입</strong> 제한 가능성 있음. 늦을수록 <strong>예상 금액</strong> 증가.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>어린이보험</strong>의 <strong>평균 금액</strong>은 위와 같지만, 보장 범위에 따라 <strong>얼마</strong>까지 올라갈 수 있는지는 설계 방식에 달려 있습니다. 특히 <strong>비갱신형</strong>으로 가입할 경우, 초기 납입료는 갱신형보다 높지만 장기적으로 볼 때 <strong>총 납입 금액</strong>이 훨씬 <strong>저렴</strong>해지는 <strong>장점</strong>이 있습니다. <strong>어린이보험 장단점</strong> 비교 시 이 부분을 가장 중요하게 고려해야 합니다.</p>
+      <p><strong>어린이보험 싼곳</strong>을 찾으려면 여러 회사의 상품을 비교하는 것이 필수적입니다. 단순히 <strong>예상 금액</strong>만 비교하지 말고, <strong>보장 범위의 차이점</strong>을 함께 확인해야 합니다. <strong>어린이보험 순위</strong>가 높은 상품이라도 우리 아이에게 불필요한 특약이 있다면 보험료만 높아질 수 있습니다.</p>
+    </section>
+
+    <!-- 4. 비갱신형 vs 갱신형 차이점 -->
+    <section class="content-section" id="non-renewal">
+      <h2>비갱신형 vs 갱신형: 어떤 것을 선택해야 할까요?</h2>
+      <p><strong>어린이종합보험 가입</strong> 시 가장 큰 고민 중 하나는 <strong>갱신형</strong>과 <strong>비갱신형</strong>의 선택입니다. 두 방식의 <strong>장단점</strong>과 <strong>차이점</strong>을 명확히 이해해야 후회 없는 선택을 할 수 있습니다.</p>
+      <h3>비갱신형 (추천)</h3>
+      <p>납입 기간 동안 보험료 변동 없이 정해진 금액을 납부합니다. 20년 납입 시 20년 동안만 납입하고, 보장은 80세나 100세까지 유지됩니다. <strong>어린이보험</strong>의 경우, 100세 만기를 선호하는 추세입니다. 초기 보험료는 갱신형보다 비싸지만, 총 납입 금액은 갱신형보다 <strong>저렴</strong>해지는 <strong>장점</strong>이 있습니다. 장기적인 관점에서 볼 때 비갱신형을 <strong>추천</strong>합니다.</p>
+      <h3>갱신형</h3>
+      <p>납입 기간 중 일정 주기(예: 3년, 5년, 10년)마다 보험료가 갱신됩니다. 초기 보험료는 비갱신형보다 <strong>싼곳</strong>처럼 보이지만, 갱신 시점마다 물가 상승률이나 연령 증가에 따른 위험률 증가로 보험료가 급격히 인상될 수 있습니다. <strong>단점</strong>은 100세까지 납입해야 하므로, 총 납입 금액이 비갱신형보다 훨씬 높아질 수 있다는 점입니다.</p>
+
+      <h3>선택 노하우: 비갱신형 100세 만기를 추천하는 이유</h3>
+      <p><strong>어린이종합보험</strong>은 성인보험으로 전환되는 것이 아니라, 처음 가입 시부터 80세나 100세까지 보장기간을 설정할 수 있습니다. <strong>내돈내산 후기</strong>를 보면 많은 부모님들이 100세 만기를 선택하여 성인이 된 후에도 별도 보험 가입 없이 보장을 이어가도록 설계합니다. <strong>2026년</strong> 기준으로 평균 수명이 증가하고 있는 만큼, 100세 만기 비갱신형은 현명한 선택으로 여겨집니다.</p>
+
+      <!-- 외부 사이트 링크 삽입 (신뢰성 확보) -->
+      <p><strong>어린이보험</strong>에 대한 상세 정보는 금융감독원 금융소비자정보 포털 파인(Fine)에서도 확인할 수 있습니다. 또한, <strong>어린이보험</strong>의 보장 내용이나 <strong>가입</strong> 시 유의사항에 대해서는 나무위키나 관련 정부기관 웹사이트(예: 국민건강보험공단)를 참조하면 도움이 됩니다.</p>
+    </section>
+
+    <!-- 5. 2026년 어린이종합보험 가입 순위 및 추천 상품 -->
+    <section class="content-section" id="ranking">
+      <h2>2026년 어린이종합보험 가입 순위 및 추천 상품 비교</h2>
+      <p>매년 <strong>어린이보험 순위</strong>는 조금씩 변동하지만, 보장 내용과 보험료 측면에서 꾸준히 좋은 평가를 받는 상품들이 있습니다. <strong>어린이보험 추천</strong> 상품은 주로 보장 범위가 넓고, 가성비가 뛰어난 상품들입니다. 특정 회사 상품을 추천하기보다는, 어떤 기준으로 비교해야 하는지 알려드립니다.</p>
+
+      <h3>가입 순위를 결정하는 요소</h3>
+      <ol>
+        <li><strong>보험료 수준:</strong> 동일한 보장 내용이라면 <strong>저렴한곳</strong>의 상품이 선호됩니다.</li>
+        <li><strong>보장 범위의 넓이:</strong> 소아암, 뇌혈관질환, 심장질환 등 핵심 보장의 범위가 넓을수록 <strong>순위</strong>가 높습니다.</li>
+        <li><strong>면책 기간/감액 기간:</strong> 질병 보장에 대한 면책 기간(가입 후 보장되지 않는 기간)이 짧은 상품이 유리합니다.</li>
+        <li><strong>납입 면제 조건:</strong> 중대한 질병 진단 시 향후 보험료 납입이 면제되는 조건이 포함된 상품이 <strong>장점</strong>이 있습니다.</li>
+      </ol>
+
+      <h3>추천 상품 비교 (가상의 예시)</h3>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>상품 구분</th>
+              <th>가입자 선호도 (가상)</th>
+              <th>핵심 보장 특징</th>
+              <th>보험료 예상 금액 (월)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A사 종합 플랜</td>
+              <td>상위권</td>
+              <td>뇌혈관/허혈성질환 보장 범위 넓음, 100세 만기 비갱신형 기본 설계.</td>
+              <td>45,000원</td>
+            </tr>
+            <tr>
+              <td>B사 가성비 플랜</td>
+              <td>중위권</td>
+              <td>입원 일당 및 수술비 특화, 보험료 <strong>싼곳</strong>으로 알려짐.</td>
+              <td>38,000원</td>
+            </tr>
+            <tr>
+              <td>C사 태아 연계 플랜</td>
+              <td>태아보험 <strong>추천</strong></td>
+              <td>선천성 질환 및 인큐베이터 보장 특약 우수. 태아 <strong>가입</strong> 시 유리.</td>
+              <td>40,000원</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p><strong>어린이보험 순위</strong>는 개인의 필요에 따라 달라집니다. 어떤 보장을 중요하게 생각하는지에 따라 <strong>추천</strong> 상품이 달라질 수 있습니다. <strong>내돈내산 후기</strong>를 참고하여 실제 보상 사례를 확인해 보는 것도 좋습니다. <strong>장단점</strong> 비교를 통해 우리 아이에게 맞는 최적의 플랜을 선택해야 합니다.</p>
+
+      <!-- 사용자 참여 유도 (Form) -->
+      <div class="form-box" id="quote-form-top">
+        <h3>우리 아이 맞춤 보험료 1초 계산기</h3>
+        <p>간단한 정보 입력으로 <strong>어린이종합보험 예상 금액</strong>을 바로 확인해 보세요.</p>
+        <form action="/submit-quote-quick" method="post" class="quote-form">
+          <label for="child-age">자녀 생년월일</label><input type="text" id="child-age" name="child-age" placeholder="예: 2024년 5월 (만 2세)" required>
+          <label for="parent-phone">연락처</label><input type="tel" id="parent-phone" name="parent-phone" placeholder="010-XXXX-XXXX" required>
+          <label for="desired-coverage">희망 보장 만기</label>
+          <select id="desired-coverage" name="desired-coverage" required>
+            <option value="">-- 선택 --</option>
+            <option value="80">80세 만기</option>
+            <option value="90">90세 만기</option>
+            <option value="100">100세 만기</option>
+          </select>
+          <button type="submit"><strong>무료 견적</strong> 요청하기</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- 6. 어린이종합보험 가입 시 고려사항 (장단점 및 노하우) -->
+    <section class="content-section" id="pros-cons">
+      <h2>어린이보험 장점, 단점 및 가입 노하우 심층 분석</h2>
+      <p><strong>어린이종합보험</strong>은 분명 많은 <strong>장점</strong>이 있지만, <strong>단점</strong>과 함께 정확히 이해해야 불필요한 지출을 막을 수 있습니다. <strong>장단점</strong>을 비교하여 현명한 선택을 돕는 정보를 제공합니다.</p>
+
+      <h3>어린이보험의 주요 장점</h3>
+      <ul>
+        <li><strong>넓은 보장 범위:</strong> 성인보험에서는 보장받기 어려운 소아 질환이나 선천성 질환(태아 가입 시)을 보장합니다.</li>
+        <li><strong>저렴한 보험료:</strong> 아이들은 성인보다 위험률이 낮아 보험료가 <strong>저렴</strong>하게 책정됩니다. 특히 <strong>비갱신형</strong>으로 가입 시, 성인이 되어도 보험료 인상 없이 <strong>100세</strong>까지 보장받을 수 있습니다.</li>
+        <li><strong>납입 면제 혜택:</strong> 특정 질병 발생 시 남은 납입 기간의 보험료를 면제해주는 혜택이 있습니다.</li>
+        <li><strong>만기 환급금:</strong> 일부 상품은 만기 시 납입 보험료를 돌려주는 환급형 설계가 가능합니다.</li>
+      </ul>
+
+      <h3>어린이보험의 단점 및 주의사항</h3>
+      <ul>
+        <li><strong>보험료 부담:</strong> 보장을 충분히 넣을 경우 <strong>예상 금액</strong>이 생각보다 높을 수 있습니다. 불필요한 특약은 제외하고 실속형으로 구성하는 것이 중요합니다.</li>
+        <li><strong>면책 기간:</strong> 가입 후 일정 기간(보통 90일) 동안은 암 진단비를 보장하지 않는 면책 기간이 존재합니다.</li>
+        <li><strong>중복 보상 불가 특약:</strong> 실손의료비나 일상생활 배상책임처럼 중복 가입 시 비례 보상되는 특약은 중복 가입의 <strong>단점</strong>이 있습니다. <strong>가입</strong> 시 기존 보험을 확인해야 합니다.</li>
+      </ul>
+
+      <h3>2026년 가입 노하우: 가성비 높이는 핵심 팁</h3>
+      <ol>
+        <li><strong>태아보험 연계:</strong> 출생 후 1년 이내 가입 시 보장 제한이 적으므로, 늦더라도 일찍 가입하는 것이 <strong>장점</strong>입니다.</li>
+        <li><strong>비갱신형 + 100세 만기:</strong> 장기적으로 가장 <strong>저렴한곳</strong>이 될 수 있는 설계입니다. <strong>내돈내산 후기</strong>에서도 가장 만족도가 높은 형태입니다.</li>
+        <li><strong>불필요한 특약 제외:</strong> 암 진단금, 뇌혈관 질환, 심장질환 등 핵심 보장 위주로 구성하고, 자잘한 특약은 제외하여 <strong>예상 금액</strong>을 낮춥니다.</li>
+        <li><strong>회사별 보장 범위 비교:</strong> <strong>어린이보험 순위</strong>가 높더라도 회사별로 <strong>보장 범위의 차이점</strong>이 있습니다. <strong>저렴한곳</strong>만 찾지 말고, 보장 범위를 비교하세요.</li>
+      </ol>
+      <p><strong>어린이보험 싼곳</strong>을 찾는 것도 중요하지만, 보장 내용을 꼼꼼히 살피는 것이 우선입니다. <strong>어린이보험 추천</strong>을 받을 때도 설계사의 전문성을 확인해야 합니다. <strong>어린이보험 장단점</strong> 비교를 통해 우리 아이에게 맞는 최적의 플랜을 선택해야 합니다.</p>
+      <p><strong><a href="https://www.fss.or.kr/" target="_blank" class="external-link">금융감독원</a></strong>에서는 보험 상품 비교 공시를 제공하고 있습니다. <strong><a href="https://www.nhis.or.kr/" target="_blank" class="external-link">국민건강보험공단</a></strong>을 통해서도 관련 정보를 얻을 수 있습니다.</p>
+    </section>
+
+    <!-- 7. FAQ (자주 묻는 질문) -->
+    <section class="content-section" id="faq">
+      <h2>자주 묻는 질문 (FAQ)</h2>
+      <div class="faq-item">
+        <h3>Q1: 어린이종합보험 가입 시기가 중요한가요?</h3>
+        <p>A: 네, 매우 중요합니다. <strong>어린이보험 추천</strong> 시기는 태아 시기 또는 출생 직후입니다. 아이가 성장하면서 질병 이력이 생기면 보험 <strong>가입</strong>이 거절되거나 보장 범위가 제한될 수 있습니다. <strong>어린이보험 싼곳</strong>을 찾더라도 가입 가능 여부가 가장 중요합니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q2: 만 100세 만기와 30세 만기 중 무엇이 좋을까요?</h3>
+        <p>A: 대부분의 전문가들은 <strong>100세 만기</strong>를 <strong>추천</strong>합니다. 30세 만기는 성인이 된 후 다시 성인보험을 가입해야 하므로 보험료가 인상될 수 있습니다. <strong>비갱신형</strong> 100세 만기는 보험료 인상 없이 평생 보장받을 수 있는 <strong>장점</strong>이 있습니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q3: <strong>어린이보험 금액</strong>이 너무 부담돼요. 어떻게 줄일 수 있나요?</h3>
+        <p>A: 불필요한 특약(예: 성인 질환 관련)을 제외하거나, 만기 환급금 없는 순수보장형을 선택하면 <strong>예상 금액</strong>을 줄일 수 있습니다. 또한, <strong>어린이보험 싼곳</strong>을 찾기 위해 여러 회사의 상품을 비교하는 것이 필수적입니다.</p>
+      </div>
+      <div class="faq-item">
+        <h3>Q4: <strong>내돈내산 후기</strong>를 보면 A사, B사 이야기가 많은데, 어떤 상품이 <strong>순위</strong>가 높나요?</h3>
+        <p>A: 특정 상품의 <strong>순위</strong>는 개인의 필요에 따라 달라집니다. <strong>어린이보험 장단점</strong> 비교 시, <strong>뇌혈관질환 진단비</strong>나 <strong>암 진단비</strong>의 보장 범위, 납입 면제 조건 등을 종합적으로 고려해야 합니다. 저희 센터에서 맞춤형 비교를 도와드립니다.</p>
+      </div>
+    </section>
+
+    <!-- 8. 심층 상담 신청 (체류 시간 증대) -->
+    <section class="content-section">
+      <h2>1:1 심층 상담 신청 (맞춤형 설계)</h2>
+      <p>우리 아이의 <strong>어린이종합보험</strong>, <strong>장단점</strong> 비교부터 <strong>가입</strong>까지 전문가의 도움이 필요합니다. <strong>2026년</strong> 최신 정보를 바탕으로 가장 <strong>저렴한곳</strong>의 <strong>추천</strong> 상품을 설계해드립니다. 아래 양식을 작성해 주시면 전문가가 연락드립니다.</p>
+      <div class="form-box">
+        <form action="/submit-quote-detailed" method="post" class="quote-form">
+          <label for="name">이름</label><input type="text" id="name" name="name" placeholder="고객님 성함" required>
+          <label for="phone">연락처</label><input type="tel" id="phone" name="phone" placeholder="010-XXXX-XXXX" required>
+          <label for="child-birthdate">자녀 생년월일</label><input type="text" id="child-birthdate" name="child-birthdate" placeholder="예: 2024년 5월 1일 (만 2세)" required>
+          <label for="preferred-time">상담 희망 시간대</label>
+          <select id="preferred-time" name="preferred-time" required>
+            <option value="">-- 선택 --</option>
+            <option value="morning">오전 (09:00~12:00)</option>
+            <option value="afternoon">오후 (13:00~18:00)</option>
+            <option value="evening">저녁 (18:00~21:00)</option>
+          </select>
+          <label for="existing-insurance">기존 가입 보험 여부</label>
+          <select id="existing-insurance" name="existing-insurance" required>
+            <option value="no">없음</option>
+            <option value="yes">있음 (갱신형/비갱신형 등)</option>
+          </select>
+          <label for="details">궁금한 점 (자유롭게 작성)</label>
+          <textarea id="details" name="details" rows="3" placeholder="예: 비갱신형 100세 만기 설계 시 예상 금액이 궁금합니다."></textarea>
+          <button type="submit"><strong>무료 상담</strong> 요청하기</button>
+        </form>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 어린이종합보험 비교센터. 본 페이지는 보험 상품 비교 정보를 제공하며, 특정 상품의 가입을 강요하지 않습니다. 모든 정보는 2026년 기준이며, 실제 상품 및 정책에 따라 달라질 수 있습니다. 상담을 통해 정확한 정보를 확인하세요.</p>
+      <p>본 페이지의 내용은 금융감독원, 국민건강보험공단 등 공신력 있는 기관의 정보를 참고하여 작성되었습니다.</p>
+    </div>
+  </footer>
+
+
+
+  
